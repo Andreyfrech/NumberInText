@@ -38,12 +38,12 @@ namespace NumberInWords
                         if (i == 3)
                         {
                             res = First_Tens(rest);
-                            result = result.Insert(0, res + " тысяч ");
+                            result = result.Insert(0, res + " thousand ");
                         }
                         if (i == 6)
                         {
                             res = First_Tens(rest);
-                            result = result.Insert(0, res + " миллионов ");
+                            result = result.Insert(0, res + " million ");
                         }
                         else
                         {
@@ -65,34 +65,55 @@ namespace NumberInWords
                         {
                             case 1:
                                 res = Units(rest);
-                                result = result.Insert(0, res + " "); break;//единицы
+                                result = result.Insert(0, res + ", "); break;//единицы
                             case 2:
                                 res = Tens(rest);
-                                result = result.Insert(0, res + " "); break;//десятки
+                                if (number % 10 == 0)
+                                {
+                                    result = result.Insert(0, res + " "); break;//десятки
+                                }
+                                else
+                                {
+                                    result = result.Insert(0, "and " + res + " "); break;//десятки
+                                }
                             case 3:
-                                res = Hundreds(rest);
-                                result = result.Insert(0, res + " "); break;//сотни
+                                res = Units(rest);
+                                result = result.Insert(0, res + " hundred "); break;//сотни
                             case 4:
-                                res = Thousands(rest);
-                                result = result.Insert(0, res + " "); break;//тысячи
+                                res = Units(rest);
+                                result = result.Insert(0, res + " thousand, "); break;//тысячи
                             case 5:
                                 res = Tens(rest);
-                                result = result.Insert(0, res + " "); break;//десятки тысяч
+                                if (number % 10 == 0)
+                                {
+                                    result = result.Insert(0, res + " "); break;//десятки тысяч
+                                }
+                                else
+                                {
+                                    result = result.Insert(0, "and " + res + " "); break;//десятки тысяч
+                                }
                             case 6:
-                                res = Hundreds(rest);
-                                result = result.Insert(0, res + " "); break;//сотни тысяч
+                                res = Units(rest);
+                                result = result.Insert(0, res + " hundred "); break;//сотни тысяч
                             case 7:
-                                res = Millions(rest);
-                                result = result.Insert(0, res + " "); break;//миллион
+                                res = Units(rest);
+                                result = result.Insert(0, res + " million, "); break;//миллион
                             case 8:
                                 res = Tens(rest);
-                                result = result.Insert(0, res + " "); break;//десятки миллионов
+                                if (number % 10 == 0)
+                                {
+                                    result = result.Insert(0, res + " "); break;//десятки миллионов
+                                }
+                                else
+                                {
+                                    result = result.Insert(0, "and " + res + " "); break;//десятки миллионов
+                                }
                             case 9:
-                                res = Hundreds(rest);
-                                result = result.Insert(0, res + " "); break;//сотни милионнов
+                                res = Units(rest);
+                                result = result.Insert(0, res + " hundred "); break;//сотни милионнов
                             case 10:
-                                res = Billion(rest);
-                                result = result.Insert(0, res + " "); break;//миллиард
+                                res = Units(rest);
+                                result = result.Insert(0, res + " billion, "); break;//миллиард
 
                             case 0: break;
                         }
@@ -108,7 +129,7 @@ namespace NumberInWords
                             case 4:
                                 if (!isThousand && number % 100 != 0)
                                 {
-                                    result = result.Insert(0, "тысяч ");
+                                    result = result.Insert(0, "thousand ");
                                     isThousand = true;
                                 }
                                 else isThousand = true;
@@ -116,21 +137,21 @@ namespace NumberInWords
                             case 5:
                                 if (!isThousand)
                                 {
-                                    result = result.Insert(0, "тысяч ");
+                                    result = result.Insert(0, "thousand ");
                                     isThousand = true;
                                 }
                                 break;//десятки тысяч
                             case 6:
                                 if (!isThousand)
                                 {
-                                    result = result.Insert(0, "тысяч ");
+                                    result = result.Insert(0, "thousand ");
                                     isThousand = true;
                                 }
                                 break;//сотни тысяч
                             case 7:
                                 if (!isMillion && number % 100 != 0)
                                 {
-                                    result = result.Insert(0, "миллионов ");
+                                    result = result.Insert(0, "million ");
                                     isMillion = true;
                                 }
                                 else
@@ -141,14 +162,14 @@ namespace NumberInWords
                             case 8:
                                 if (!isMillion)
                                 {
-                                    result = result.Insert(0, "миллионов ");
+                                    result = result.Insert(0, "million ");
                                     isMillion = true;
                                 }
                                 break;//десятки миллионов
                             case 9:
                                 if (!isMillion)
                                 {
-                                    result = result.Insert(0, "милионов ");
+                                    result = result.Insert(0, "million ");
                                     isMillion = true;
                                 }
                                 break;//сотни миллионов
@@ -164,15 +185,15 @@ namespace NumberInWords
         {
             switch (rest)
             {
-                case 1: return "один";
-                case 2: return "два";
-                case 3: return "три";
-                case 4: return "четыре";
-                case 5: return "пять";
-                case 6: return "шесть";
-                case 7: return "семь";
-                case 8: return "восемь";
-                case 9: return "девять";
+                case 1: return "one";
+                case 2: return "two";
+                case 3: return "three";
+                case 4: return "four";
+                case 5: return "five";
+                case 6: return "six";
+                case 7: return "seven";
+                case 8: return "eight";
+                case 9: return "nine";
 
             }
             return "";
@@ -182,16 +203,16 @@ namespace NumberInWords
         {
             switch (rest)
             {
-                case 10: return "десять";
-                case 11: return "одиннадцать";
-                case 12: return "двенадцать";
-                case 13: return "тринадцать";
-                case 14: return "четырнадцать";
-                case 15: return "пятнадцать";
-                case 16: return "шестнадцать";
-                case 17: return "семнадцать";
-                case 18: return "восемнадцать";
-                case 19: return "девятнадцать";
+                case 10: return "ten";
+                case 11: return "eleven";
+                case 12: return "twelve";
+                case 13: return "thirteen";
+                case 14: return "fourteen";
+                case 15: return "fifteen";
+                case 16: return "sixteen";
+                case 17: return "seventeen";
+                case 18: return "eighteen";
+                case 19: return "nineteen";
 
             }
             return "";
@@ -202,103 +223,15 @@ namespace NumberInWords
         {
             switch (rest)
             {
-                case 2: return "двадцать";
-                case 3: return "тридцать";
-                case 4: return "сорок";
-                case 5: return "пятьдесят";
-                case 6: return "шестьдесят";
-                case 7: return "семдесят";
-                case 8: return "восемдесят";
-                case 9: return "девяносто";
+                case 2: return "twenty";
+                case 3: return "thirty";
+                case 4: return "forty";
+                case 5: return "fifty";
+                case 6: return "sixty";
+                case 7: return "seventy";
+                case 8: return "eighty";
+                case 9: return "ninety";
 
-            }
-            return "";
-        }
-
-        //сотни в тексте
-        public string Hundreds(int rest)
-        {
-            switch (rest)
-            {
-                case 1: return "сто";
-                case 2: return "двести";
-                case 3: return "триста";
-                case 4: return "четыреста";
-                case 5: return "пятьсот";
-                case 6: return "шетьсот";
-                case 7: return "семьсот";
-                case 8: return "восемьсот";
-                case 9: return "девятьсот";
-
-            }
-            return "";
-        }
-        //тысячи в тексте
-        public string Thousands(int rest)
-        {
-            switch (rest)
-            {
-                case 1: return "одна тысяча";
-                case 2: return "две тысячи";
-                case 3: return "три тысячи";
-                case 4: return "четыре тысячи";
-                case 5: return "пять тысяч";
-                case 6: return "шеть тысяч";
-                case 7: return "семь тысяч";
-                case 8: return "восемь тысяч";
-                case 9: return "девять тысяч";
-                case 0: return "тысяч";
-
-            }
-            return "";
-        }
-        //миллионы в тексте
-        public string Millions(int rest)
-        {
-            switch (rest)
-            {
-                case 1: return "один миллион";
-                case 2: return "два миллиона";
-                case 3: return "три миллиона";
-                case 4: return "четыре миллиона";
-                case 5: return "пять миллионов";
-                case 6: return "шеть миллионов";
-                case 7: return "семь миллионов";
-                case 8: return "восемь миллионов";
-                case 9: return "девять миллионов";
-                case 0: return "миллионов";
-
-            }
-            return "";
-        }
-        //миллиарды в тексте
-        public string Billion(int rest)
-        {
-            switch (rest)
-            {
-                case 1: return "один миллиард";
-            }
-            return "";
-        }
-        //форма слова доллар
-        public string Dollars(int number)
-        {
-            switch (number % 10)
-            {
-                case 1: return "доллар";
-                case 2: case 3: case 4: return "доллара";
-                case 5: case 6: case 7: case 8: case 9: case 0: return "долларов";
-            }
-            return "";
-        }
-        //форма слова цент
-        public string Cents(int number)
-        {
-            switch (number % 10)
-            {
-                case 1: return "цент";
-                case 2: case 3: case 4: return "цента";
-                case 5: case 6: case 7: case 8: case 9: case 0: return "центов";
             }
             return "";
         }

@@ -50,14 +50,10 @@ namespace NumberInWords
             //если дробной части нет выводить ноль
             else
             {
-                FractionalNumberString = "ноль ";
+                FractionalNumberString = "zero ";
             }
-            //выбор правильного падежа для доллара и цента
-            Dollar = word.Dollars(IntNumber);
-            Cent = word.Cents(Fractional);
-
             
-            Console.WriteLine(IntNumberString + Dollar + " и " + FractionalNumberString + Cent);
+            Console.WriteLine(IntNumberString + "DOLLARS" + " AND " + FractionalNumberString + "CENTS");
         }
     }
 }
